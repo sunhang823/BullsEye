@@ -19,9 +19,17 @@ class ViewController: UIViewController {
         let roundedValue = slider.value.rounded()
         currentValue = Int(roundedValue)
         startNewRound()
-    }    
+    }
     @IBAction func showAlert(){
-        let message = "The value of the slider is now: \(currentValue)" + "\nThe target value is: \(targetValue)"
+        var difference = currentValue - targetValue
+        if difference < 0{
+            difference = -difference
+        }
+
+        let message = "The value of the slider is now: \(currentValue)" +
+        "\nThe target value is: \(targetValue)" +
+        "\nThe difference is: \(difference)"
+        
         let alert = UIAlertController(title: "Hello, World!", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
