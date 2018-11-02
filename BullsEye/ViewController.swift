@@ -22,18 +22,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let roundedValue = slider.value.rounded()
         currentValue = Int(roundedValue)
-        startNewRound()
+        startNewGame()
     }
     @IBAction func showAlert(){
         let difference = abs(targetValue - currentValue)
-        let points = 100 - difference
+        var points = 100 - difference
+        
+        let title: String
+        if difference == 0{
+            title = "Perfect!"
+            points += 100
+        }else if difference < 5{
+            title = "You almost had it!"
+            if difference == 1{
+                points += 50
+            }
+        }else if difference < 10{
+            title = "Pretty good!"
+        }else{
+            title = "Not even close..."
+        }
         score += points
         let message = "You scored \(points) points"
-        let alert = UIAlertController(title: "Hello, World!", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: {
+            action in
+            self.startNewRound()
+        })
         alert.addAction(action)
         present(alert,animated: true,completion: nil)
-        startNewRound()
     }
     @IBAction func sliderMoved(_ slider: UISlider){
         let roundedValue = slider.value.rounded()
@@ -50,6 +67,11 @@ class ViewController: UIViewController {
         targetLable.text = String(targetValue)
         scoreLable.text = String(score)
         roundLable.text = String(round)
+    }
+    @IBAction func startNewGame(){
+        score = 0
+        round = 0
+        startNewRound()
     }
 
 }
