@@ -104,6 +104,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="roundLable" destination="1Tw-kY-S42" id="7Yz-dS-2yX"/>
+                        <outlet property="scoreLable" destination="vvz-T8-7VV" id="Hx3-IF-gfv"/>
                         <outlet property="slider" destination="daG-aL-PNh" id="VgF-Wl-mbd"/>
                         <outlet property="targetLable" destination="bfp-Q1-2ZF" id="Arh-d4-ndz"/>
                     </connections>
